@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <title>Produkty</title>
+</head>
+
+<body>
+<section>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Klienci</h1>
+            <p>Wszystkie klienci</p>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+            <div class="thumbnail">
+                <br class="caption">
+                <div th:each="client : ${clients}">
+                    <span th:text="${client.customerId}"></span></br>
+
+                    <span th:text="${client.name}"></span></br>
+
+                    <p> Adres:
+                        <span th:text="${client.address}"></span>
+                    </p>
+
+                    <p>Liczba zakupien:
+                        <span th:text="${client.noOfOrdersMade}"></span>
+                    </p>
+                    </br>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+</body>
+</html>

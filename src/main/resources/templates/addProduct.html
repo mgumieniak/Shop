@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty</title>
+</head>
+<body>
+    <section>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Produkty</h1>
+                <p>Dodaj produkty</p>
+            </div>
+        </div>
+    </section>
+
+    <form method="POST" th:action="@{/products/add}" th:object="${newProduct}">
+        <br>
+            <legend>New Product</legend>
+            <label>Product Id:<br/>
+                <input type="text" name="productId"  th:field="*{productId}"/></label><br/>
+            <label>Name:<br/>
+                <input type="text" name="name"  th:field="*{name}"/></label><br/>
+            <label>UnitPrice:<br/>
+                <input type="text" name="unitPrice" th:field="*{unitPrice}"/></label><br/>
+            <label>Description:<br/>
+                <input type="text" name="description" th:field="*{description}"/></label><br/>
+            <label>Manufacturer:<br/>
+                <input type="text" name="manufacturer" th:field="*{manufacturer}"/></label><br/>
+            <label>Category:<br/>
+                <input type="text" name="category" th:field="*{category}"/></label><br/>
+            <label>UnitsInStock:<br/>
+                <input type="text" name="unitsInStock" th:field="*{unitsInStock}"/></label><br/>
+            <label>UnitsInOrder:<br/>
+                <input type="text" name="unitsInOrder" th:field="*{unitsInOrder}"/></label><br/>
+            <label>Discontinued:<br/>
+                <input type="text" name="discontinued" th:field="*{discontinued}"/></label><br/>
+
+            Stan:</br>
+            <select th:field="*{condition}">
+                <option th:each="state : ${T(shop.domens.Product.Condition).values()}"
+                        th:value="${state}"
+                        th:text="${state}">
+                </option>
+            </select>
+
+            <br/>
+        </fieldset>
+        <input type="submit" value="Submit order"/>
+    </form>
+
+</body>
+</html>

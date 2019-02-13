@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <title>Produkty</title>
+</head>
+
+<body>
+<section>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Produkty</h1>
+            <p>Wszystkie produkty dostępne w naszym sklepie</p>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div th:each="product : ${productsList}">
+            <div class="col-sm-6 col-md-3" style="padding-bottom: 20px">
+                 <div class="thumbnail">
+                    <br class="caption">
+
+                        <span th:text="${product.name}"></span></br>
+
+                        <span th:text="${product.description}"></span></br>
+
+                        <p>
+                            <span th:text="${product.unitPrice}"></span> PLN </br>
+                            Liczba sztuk w magazynie:
+                            <span th:text="${product.unitsInStock}"></span>
+                        </p>
+                        <a th:href="@{/products/product(id=${product.productId})}">
+                            <span class="glyphicon-info-sign glyphicon"></span> Szczegóły
+                        </a>
+                     </br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+</body>
+</html>
