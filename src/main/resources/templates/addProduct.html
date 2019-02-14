@@ -18,8 +18,7 @@
     <form method="POST" th:action="@{/products/add}" th:object="${newProduct}">
         <br>
             <legend>New Product</legend>
-            <label>Product Id:<br/>
-                <input type="text" name="productId"  th:field="*{productId}"/></label><br/>
+
             <label>Name:<br/>
                 <input type="text" name="name"  th:field="*{name}"/></label><br/>
             <label>UnitPrice:<br/>

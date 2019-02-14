@@ -33,11 +33,10 @@ public class ShopApplication {
             tvMsi.setManufacturer("MSI");
             tvMsi.setUnitsInStock(10);*/
 
-            repo.save(new Product(100,"iPhone 5",new BigDecimal(3000),"iPhone 8 cali",
+            repo.save(new Product(1L,"iPhone 5",new BigDecimal(3000),"iPhone 8 cali",
                     "Apple","Smart Phone",30,0,false, NEW));
-            repo.save(new Product(101,"Samsung Galaxy 5",new BigDecimal(2000),"Samsung 8 cali",
+            repo.save(new Product(2L,"Samsung Galaxy 5",new BigDecimal(2000),"Samsung 8 cali",
                     "Samsung","Smart Phone",30,0,false, NEW));
-
 
 
 
