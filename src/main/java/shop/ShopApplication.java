@@ -11,6 +11,8 @@ import shop.domens.Product;
 
 import java.math.BigDecimal;
 
+import static shop.domens.Product.Condition.NEW;
+
 @SpringBootApplication
 public class ShopApplication {
 
@@ -21,27 +23,23 @@ public class ShopApplication {
     @Bean
     public CommandLineRunner dataLoader(ProductRepository repo, ClientRepository clientRepository) {
         return args -> {
-            Product iphone = new Product("P1234", "iPhone 5s", new BigDecimal(500));
-            iphone.setDescription("Apple iPhone 5s, smartfon z 4-calowym wyświetlaczem o rozdzielczości 640×1136 oraz 8-megapikselowym aparatem");
-            iphone.setCategory("Smart Phone");
-            iphone.setManufacturer("Apple");
-            iphone.setUnitsInStock(1000);
 
-            Product samsung = new Product("P1200", "Samsung", new BigDecimal(700));
-            samsung.setDescription("Super samsung ze hej");
-            samsung.setCategory("Smart Phone");
-            samsung.setManufacturer("Samsung");
-            samsung.setUnitsInStock(500);
+/*
+
 
             Product tvMsi = new Product("P1201", "MSI", new BigDecimal(600));
             tvMsi.setDescription("telewizor 23 cali");
             tvMsi.setCategory("Tv");
             tvMsi.setManufacturer("MSI");
-            tvMsi.setUnitsInStock(10);
+            tvMsi.setUnitsInStock(10);*/
 
-            repo.save(iphone);
-            repo.save(samsung);
-            repo.save(tvMsi);
+            repo.save(new Product(100,"iPhone 5",new BigDecimal(3000),"iPhone 8 cali",
+                    "Apple","Smart Phone",30,0,false, NEW));
+            repo.save(new Product(101,"Samsung Galaxy 5",new BigDecimal(2000),"Samsung 8 cali",
+                    "Samsung","Smart Phone",30,0,false, NEW));
+
+
+
 
             Customer customer = new Customer(100,"Jan","Kazimiera 17",4);
             clientRepository.save(customer);

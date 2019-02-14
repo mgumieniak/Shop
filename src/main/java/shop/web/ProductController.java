@@ -47,7 +47,6 @@ public class ProductController {
     public String getAddNewProductForm(Model model){
         Product newProduct = new Product();
         model.addAttribute("newProduct",newProduct);
-        model.addAttribute("conditionProduct",new String[] {"NEW", "SECONDHAND"});
 
         return "addProduct";
     }
