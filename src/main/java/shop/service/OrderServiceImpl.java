@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void processOrder(String productId, int count) {
+    public void processOrder(long productId, int count) {
         Optional<Product> product = productRepository.findById(productId);
         product.ifPresentOrElse(
                 v->

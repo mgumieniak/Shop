@@ -3,6 +3,9 @@ package shop.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import shop.domens.Product;
 import shop.service.ProductService;
@@ -32,7 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("/product")
-    public String getProductById(@RequestParam("id") String productId, Model model) {
+    public String getProductById(@RequestParam("id") long productId, Model model) {
         model.addAttribute("product", productService.getProductById(productId));
         return "product";
     }
@@ -52,9 +55,21 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct){
-        productService.addProduct(newProduct);
+    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result){
 
+        String[] suppressedFields=result.getSuppressedFields();
+        if (suppressedFields.length > 0) {
+            throw new RuntimeException("Proba wiązania niedozwolonych pol: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+        }
+
+        productService.addProduct(newProduct);
         return "redirect:/products";
+    }
+
+    @InitBinder
+    public void initialiseBinder(WebDataBinder binder) {
+        binder.setDisallowedFields("unitsInOrder", "discontinued");
+
+        binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition");
     }
 }

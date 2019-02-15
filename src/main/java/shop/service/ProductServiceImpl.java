@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(String Id) {
-        return productRepository.findById(Id).orElseThrow(NullPointerException::new);
+    public Product getProductById(long id) {
+        return productRepository.findById(id).orElseThrow(NullPointerException::new);
     }
 
     @Override
