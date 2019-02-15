@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 //@RequiredArgsConstructor(access =AccessLevel.PUBLIC)
-@NoArgsConstructor(access =AccessLevel.PUBLIC)
+@NoArgsConstructor(access =AccessLevel.PUBLIC, force = true)
 @AllArgsConstructor
 @Entity
 public class Product {
