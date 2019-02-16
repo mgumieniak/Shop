@@ -17,6 +17,9 @@
     <section class="container">
         <div class="row">
             <div class="col-md-5">
+                <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
+            </div>
+            <div class="col-md-5">
                 <h3><span th:text="${product.name}"></span></h3>
                 <p><span th:text="${product.description}"></span></p>
                 <p>

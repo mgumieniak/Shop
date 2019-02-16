@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/addProduct")
+                .antMatchers("/products/add")
                 .access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**")
                 .access("permitAll")
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/products")
 
                 .and()
                 .csrf()
