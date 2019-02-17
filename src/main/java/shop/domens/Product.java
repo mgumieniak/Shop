@@ -25,6 +25,8 @@ public class Product {
     private  boolean discontinued;
     @Enumerated(EnumType.STRING)
     private  Condition condition;
+    @Lob
+    private MultipartFile productImage;
 
     public static enum Condition{
         NEW, SECONDHAND

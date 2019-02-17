@@ -58,13 +58,23 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result){
+    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result,
+                                           HttpServletRequest request){
 
         String[] suppressedFields=result.getSuppressedFields();
         if (suppressedFields.length > 0) {
             throw new RuntimeException("Proba wiązania niedozwolonych pol: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
         }
 
+        MultipartFile productImage = newProduct.getProductImage();
+
+        if (productImage!=null && !productImage.isEmpty()) {
+            try {
+                productImage.transferTo(new File("D:\\JAVA workspace\\Spring MVC\\shop\\src\\main\\resources\\static\\images\\"+ newProduct.getProductId() + ".png"));
+            } catch (Exception e) {
+                throw new RuntimeException("Product Image saving failed", e);
+            }
+        }
 
         productService.addProduct(newProduct);
         return "redirect:/products";
