@@ -7,9 +7,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import shop.domens.Product;
 import shop.service.ProductService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +65,7 @@ public class ProductController {
             throw new RuntimeException("Proba wiązania niedozwolonych pol: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
         }
 
+
         productService.addProduct(newProduct);
         return "redirect:/products";
     }
@@ -70,6 +74,7 @@ public class ProductController {
     public void initialiseBinder(WebDataBinder binder) {
         binder.setDisallowedFields("unitsInOrder", "discontinued");
 
-        binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition");
+        binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition",
+                "productImage");
     }
 }
