@@ -25,7 +25,7 @@ public class Product {
     private  boolean discontinued;
     @Enumerated(EnumType.STRING)
     private  Condition condition;
-    @Lob
+    @Transient
     private MultipartFile productImage;
 
     public static enum Condition{

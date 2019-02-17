@@ -13,6 +13,9 @@ import shop.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -58,16 +61,26 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result,
-                                           HttpServletRequest request){
+    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result){
 
         String[] suppressedFields=result.getSuppressedFields();
         if (suppressedFields.length > 0) {
             throw new RuntimeException("Proba wiązania niedozwolonych pol: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
         }
 
-        MultipartFile productImage = newProduct.getProductImage();
 
+      /*try (FileOutputStream fos = new FileOutputStream("D:\\JAVA workspace\\Spring MVC\\shop\\src\\main\\resources\\static\\images\\"+ newProduct.getProductId() + ".png")) {
+            fos.write(newProduct.getProductImage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        productService.addProduct(newProduct);
+
+        //save file in images
+        MultipartFile productImage = newProduct.getProductImage();
         if (productImage!=null && !productImage.isEmpty()) {
             try {
                 productImage.transferTo(new File("D:\\JAVA workspace\\Spring MVC\\shop\\src\\main\\resources\\static\\images\\"+ newProduct.getProductId() + ".png"));
@@ -76,7 +89,6 @@ public class ProductController {
             }
         }
 
-        productService.addProduct(newProduct);
         return "redirect:/products";
     }
 
