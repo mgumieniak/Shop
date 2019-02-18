@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.data.ProductRepository;
 import shop.domens.Product;
+import shop.exception.ProductNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -33,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(long id) {
-        return productRepository.findById(id).orElseThrow(NullPointerException::new);
+        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException(id));
     }
 
     @Override

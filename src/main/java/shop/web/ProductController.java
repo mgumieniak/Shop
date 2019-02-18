@@ -8,7 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import shop.domens.Product;
+import shop.exception.NoProductsFoundUnderCategoryException;
+import shop.exception.ProductNotFoundException;
 import shop.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +39,11 @@ public class ProductController {
 
     @GetMapping("/{category}")
     public String getProductsByCategory(Model model,@PathVariable("category") String productCategory){
-        model.addAttribute("productsList",productService.findByCategory(productCategory));
+        List<Product> productList = productService.findByCategory(productCategory);
+        if (productList == null || productList.isEmpty()){
+            throw new NoProductsFoundUnderCategoryException();
+        }
+        model.addAttribute("productsList",productList);
         return "products";
     }
 
@@ -69,14 +76,6 @@ public class ProductController {
         }
 
 
-      /*try (FileOutputStream fos = new FileOutputStream("D:\\JAVA workspace\\Spring MVC\\shop\\src\\main\\resources\\static\\images\\"+ newProduct.getProductId() + ".png")) {
-            fos.write(newProduct.getProductImage());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
         productService.addProduct(newProduct);
 
         //save file in images
@@ -98,5 +97,15 @@ public class ProductController {
 
         binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition",
                 "productImage");
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ModelAndView handleError(HttpServletRequest req, ProductNotFoundException exception) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("invalidProductId", exception.getProductId());
+        mav.addObject("exception", exception);
+        mav.addObject("url", req.getRequestURL()+"?"+req.getQueryString());
+        mav.setViewName("productNotFound");
+        return mav;
     }
 }
