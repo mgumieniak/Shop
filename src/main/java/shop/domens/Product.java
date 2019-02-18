@@ -21,7 +21,7 @@ public class Product {
     private  String name;
 
     @Min(value = 0, message = "The price can not be negative")
-    @Digits(integer = 6,fraction = 2, message = "Invalid price format. The correct price is in format:  xxx,xx")
+    @Digits(integer = 8,fraction = 2, message = "Invalid price format. The correct price is in format:  xxx,xx")
     @NotNull(message = "Price is required")
     private  BigDecimal unitPrice;
 

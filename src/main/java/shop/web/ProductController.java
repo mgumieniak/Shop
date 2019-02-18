@@ -13,6 +13,7 @@ import shop.domens.Product;
 import shop.exception.NoProductsFoundUnderCategoryException;
 import shop.exception.ProductNotFoundException;
 import shop.service.ProductService;
+import shop.validator.ProductValidator;
 import shop.validator.UnitsInStockValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
     @Autowired
-    private UnitsInStockValidator unitsInStockValidator;
+    private ProductValidator productValidator;
 
     @GetMapping
     public String list(Model model) {
@@ -103,7 +104,7 @@ public class ProductController {
         binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition",
                 "productImage");
 
-        binder.setValidator(unitsInStockValidator);
+        binder.setValidator(productValidator);
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
