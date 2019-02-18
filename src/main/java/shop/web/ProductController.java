@@ -13,8 +13,10 @@ import shop.domens.Product;
 import shop.exception.NoProductsFoundUnderCategoryException;
 import shop.exception.ProductNotFoundException;
 import shop.service.ProductService;
+import shop.validator.UnitsInStockValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -30,6 +32,8 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+    @Autowired
+    private UnitsInStockValidator unitsInStockValidator;
 
     @GetMapping
     public String list(Model model) {
@@ -68,16 +72,18 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String processAddNewProductForm(@ModelAttribute ("newProduct") Product newProduct, BindingResult result){
+    public String processAddNewProductForm(@ModelAttribute ("newProduct") @Valid Product newProduct, BindingResult result){
 
         String[] suppressedFields=result.getSuppressedFields();
         if (suppressedFields.length > 0) {
             throw new RuntimeException("Proba wiązania niedozwolonych pol: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
         }
 
+        if(result.hasErrors()){
+            return "addProduct";
+        }
 
         productService.addProduct(newProduct);
-
         //save file in images
         MultipartFile productImage = newProduct.getProductImage();
         if (productImage!=null && !productImage.isEmpty()) {
@@ -87,7 +93,6 @@ public class ProductController {
                 throw new RuntimeException("Product Image saving failed", e);
             }
         }
-
         return "redirect:/products";
     }
 
@@ -97,6 +102,8 @@ public class ProductController {
 
         binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition",
                 "productImage");
+
+        binder.setValidator(unitsInStockValidator);
     }
 
     @ExceptionHandler(ProductNotFoundException.class)

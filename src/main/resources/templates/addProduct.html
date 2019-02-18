@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Produkty</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 </head>
 <body>
+
     <section>
         <div class="jumbotron">
             <div class="container">
@@ -14,34 +16,62 @@
             </div>
         </div>
     </section>
+    <section class="container">
+
+
+
+    <h2>New Product</h2>
 
     <form method="POST" th:action="@{/products/add}" th:object="${newProduct}" enctype="multipart/form-data">
-        <br>
-            <legend>New Product</legend>
+
+            <div th:if="${#fields.hasErrors()}">
+                 <span class="validationError">
+                    Please correct the problems below and resubmit.
+                 </span>
+            </div>
+
 
             <label>Name:<br/>
-                <input type="text" name="name"  th:field="*{name}"/></label><br/>
+                <input type="text" name="inputData"  th:field="*{name}"/></label>
+                <span class="alert alert-danger"
+                      th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}">Name Error</span><br/>
             <label>UnitPrice:<br/>
-                <input type="text" name="unitPrice" th:field="*{unitPrice}"/></label><br/>
+                <input type="text" name="inputData" th:field="*{unitPrice}"/></label>
+                <span class="alert alert-danger"
+                    th:if="${#fields.hasErrors('unitPrice')}"
+                    th:errors="*{unitPrice}">Name Error</span><br/>
             <label>Description:<br/>
-                <input type="text" name="description" th:field="*{description}"/></label><br/>
+                <input type="text" name="inputData" th:field="*{description}"/></label>
+                <span class="alert alert-danger"
+                    th:if="${#fields.hasErrors('description')}"
+                    th:errors="*{description}">Name Error</span><br/>
             <label>Manufacturer:<br/>
-                <input type="text" name="manufacturer" th:field="*{manufacturer}"/></label><br/>
+                <input type="text" name="inputData" th:field="*{manufacturer}"/></label>
+                <span class="alert alert-danger"
+                      th:if="${#fields.hasErrors('manufacturer')}"
+                      th:errors="*{manufacturer}">Name Error</span><br/>
             <label>Category:<br/>
-                <input type="text" name="category" th:field="*{category}"/></label><br/>
+                <input type="text" name="inputData" th:field="*{category}"/></label>
+                <span class="alert alert-danger"
+                    th:if="${#fields.hasErrors('category')}"
+                    th:errors="*{category}">Name Error</span><br/>
             <label>UnitsInStock:<br/>
-                <input type="text" name="unitsInStock" th:field="*{unitsInStock}"/></label><br/>
+                <input type="text" name="inputData" th:field="*{unitsInStock}"/></label>
+                <span class="alert alert-danger"
+                    th:if="${#fields.hasErrors('unitsInStock')}"
+                    th:errors="*{unitsInStock}">Name Error</span><br/>
 
-            Stan:</br>
+            Stan:
             <select th:field="*{condition}">
                 <option th:each="state : ${T(shop.domens.Product.Condition).values()}"
                         th:value="${state}"
                         th:text="${state}">
                 </option>
-            </select>
+            </select><br/>
 
-        <label>File:<br/>
-            <input type="file"  name="productImage" th:field="*{productImage}"/></label><br/>
+            <label>File:<br/>
+                <input type="file"  name="productImage" th:field="*{productImage}"/></label><br/>
 
         <br/>
 
@@ -52,6 +82,6 @@
     <form method="POST" th:action="@{/logout}" id="logoutForm">
         <input type="submit" value="Logout"/>
     </form>
-
+    </section>
 </body>
 </html>
