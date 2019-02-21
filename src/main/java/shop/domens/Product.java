@@ -2,6 +2,7 @@ package shop.domens;
 
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
+import shop.validator.PriceAndAmountOfProduct;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -37,8 +38,9 @@ public class Product {
     @Size(min=2,message = "Category is required")
     private  String category;
 
-    @Min(value = 0, message = "Units in stock can not be negative")
-    @Digits(integer = 6,fraction = 0, message = "Invalid units in stock format")
+    //@Min(value = 0, message = "Units in stock can not be negative")
+    //@Digits(integer = 6,fraction = 0, message = "Invalid units in stock format")
+    @PriceAndAmountOfProduct
     private  int unitsInStock;
 
     private  int unitsInOrder;
