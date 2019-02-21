@@ -2,12 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Taco Cloud</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   </head>
   
   <body>
-    <h1>Login</h1>
-    
-    <div th:if="${error}"> 
+
+    <section>
+      <div class="jumbotron">
+        <div class="container">
+          <h1>Login</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+
+    <div class="alert alert-danger" th:if="${error}">
       Unable to login. Check your username and password.
     </div>
     
@@ -23,5 +33,6 @@
       
       <input type="submit" value="Login"/>
     </form>
+    </section>
   </body>
 </html>

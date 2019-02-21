@@ -21,12 +21,14 @@ public class RegistrationController {
     RegistryService registryService;
 
     @GetMapping
-    public String registerForm() {
+    public String registerForm(Model model){
+        RegistrationForm registrationForm = new RegistrationForm();
+        model.addAttribute("newUser",registrationForm);
         return "registration";
     }
 
     @PostMapping
-    public String processRegistration(RegistrationForm form, BindingResult result) {
+    public String processRegistration(@ModelAttribute("newUser") @Valid RegistrationForm form, BindingResult result) {
 
         if(result.hasErrors()){
             return "registration";

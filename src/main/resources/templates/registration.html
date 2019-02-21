@@ -3,26 +3,41 @@
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Taco Cloud</title>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   </head>
   
   <body>
-    <h1>Register</h1>
+
+    <section>
+        <div class="jumbotron">
+          <div class="container">
+              <h1>Register</h1>
+          </div>
+        </div>
+    </section>
+
+    <section class="container">
 
 
-    <form method="POST" th:action="@{/register}" id="registerForm">
+    <form method="POST" th:action="@{/register}" th:object="${newUser}">
 
-        <label for="username">Username: </label>
-        <input type="text" name="username"/><br/>
+        <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+            <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
+        </div></br>
 
-        <label for="password">Password: </label>
-        <input type="password" name="password"/><br/>
+        <label>Username: </label>
+        <input type="text" name="username" th:field="*{username}"/><br/>
 
-        <label for="confirmPassword">Confirm password: </label>
-        <input type="password" name="confirmPassword"/><br/>
+        <label>Password: </label>
+        <input type="password" name="password" th:field="*{password}"/><br/>
+
+        <label>Confirm password: </label>
+        <input type="password" name="confirmPassword" th:field="*{confirmPassword}"/><br/>
 
 
         <input type="submit" value="Register"/>
     </form>
-    
+
+    </section>
   </body>
 </html>
