@@ -24,14 +24,6 @@ public class ShopApplication {
     public CommandLineRunner dataLoader(ProductRepository repo, ClientRepository clientRepository) {
         return args -> {
 
-/*
-
-
-            Product tvMsi = new Product("P1201", "MSI", new BigDecimal(600));
-            tvMsi.setDescription("telewizor 23 cali");
-            tvMsi.setCategory("Tv");
-            tvMsi.setManufacturer("MSI");
-            tvMsi.setUnitsInStock(10);*/
 
            repo.save(new Product("iPhone 5",new BigDecimal(3000),"iPhone 8 cali",
                    "Apple","Smart Phone",30,0,false, NEW));

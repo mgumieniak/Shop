@@ -50,6 +50,7 @@ public class ProductController {
         return "product";
     }
 
+
     @GetMapping("/productPrice")
     public String getProductByPriceBetween(@RequestParam("priceMin") BigDecimal priceMin,@RequestParam("priceMax") BigDecimal priceMax, Model model) {
         model.addAttribute("productsList", productService.getProductByPriceBetween(priceMin,priceMax));

@@ -7,43 +7,44 @@
     <title>Produkt</title>
 </head>
 <body>
-    <section>
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Produkt</h1>
-            </div>
+<section>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Produkt</h1>
         </div>
-    </section>
-    <section class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
-            </div>
-            <div class="col-md-5">
-                <h3><span th:text="${product.name}"></span></h3>
-                <p><span th:text="${product.description}"></span></p>
-                <p>
-                    <strong>Kod produktu: </strong><span class="labellabel-warning"th:text="${product.productId}"></span>
-                </p>
-                <p>
-                    <strong>Producent</strong>:  <span th:text="${product.manufacturer}"></span>
-                </p>
-                <p>
-                    <strong>Kategoria</strong>:  <span th:text="${product.category}"></span>
-                </p>
-                <p>
-                    <strong>Dostępna liczba sztuk</strong>: <span th:text="${product.unitsInStock}"></span>
-                </p>
-                <h4><span th:text="${product.unitPrice}"></span> PLN</h4>
-                <p>
-                    <a href="#" class="btn btn-warning btn-large">
-                        <span class="glyphicon-shopping-cart glyphicon"></span>
-                        Zamów teraz
-                    </a>
-                </p>
-            </div>
+    </div>
+</section>
+<section class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
         </div>
-    </section>
+        <div class="col-md-5">
+            <h3><span th:text="${product.name}"></span></h3>
+            <p><span th:text="${product.description}"></span></p>
+            <p>
+                <strong>Kod produktu: </strong><span class="labellabel-warning"th:text="${product.productId}"></span>
+            </p>
+            <p>
+                <strong>Producent</strong>:  <span th:text="${product.manufacturer}"></span>
+            </p>
+            <p>
+                <strong>Kategoria</strong>:  <span th:text="${product.category}"></span>
+            </p>
+            <p>
+                <strong>Dostępna liczba sztuk</strong>: <span th:text="${product.unitsInStock}"></span>
+            </p>
+            <h4><span th:text="${product.unitPrice}"></span> PLN</h4>
+            <p>
+                <a th:href="@{/order}"
+                   href="#" class="btn btn-warning btn-large">
+                    <span class="glyphicon-shopping-cart glyphicon"></span>
+                    Zamów teraz
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

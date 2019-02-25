@@ -23,22 +23,22 @@
     <div class="row">
         <div th:each="product : ${productsList}">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 20px">
-                 <div class="thumbnail">
+                <div class="thumbnail">
                     <br class="caption">
-                        <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
-                        <span th:text="${product.name}"></span></br>
+                    <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
+                    <span th:text="${product.name}"></span></br>
 
-                        <span th:text="${product.description}"></span></br>
+                    <span th:text="${product.description}"></span></br>
 
-                        <p>
-                            <span th:text="${product.unitPrice}"></span> PLN </br>
-                            Liczba sztuk w magazynie:
-                            <span th:text="${product.unitsInStock}"></span>
-                        </p>
-                        <a th:href="@{/products/product(id=${product.productId})}">
-                            <span class="glyphicon-info-sign glyphicon"></span> Szczegóły
-                        </a>
-                     </br>
+                    <p>
+                        <span th:text="${product.unitPrice}"></span> PLN </br>
+                        Liczba sztuk w magazynie:
+                        <span th:text="${product.unitsInStock}"></span>
+                    </p>
+                    <a th:href="@{/products/product(id=${product.productId})}">
+                        <span class="glyphicon-info-sign glyphicon"></span> Szczegóły
+                    </a>
+                    </br>
                 </div>
             </div>
         </div>
