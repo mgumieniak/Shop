@@ -35,13 +35,19 @@
                 <strong>Dostępna liczba sztuk</strong>: <span th:text="${product.unitsInStock}"></span>
             </p>
             <h4><span th:text="${product.unitPrice}"></span> PLN</h4>
-            <p>
-                <a th:href="@{/order}"
-                   href="#" class="btn btn-warning btn-large">
-                    <span class="glyphicon-shopping-cart glyphicon"></span>
-                    Zamów teraz
-                </a>
-            </p>
+
+            <form method="POST" th:action="@{/order}" th:object="${newOrder}">
+
+
+                    <input type="hidden" name="inputData" th:field="*{id}"/></label><br/>
+
+                <label>UnitsInStock:<br/>
+                    <input type="text" name="inputData" th:field="*{orderSize}"/></label>
+
+
+                <input type="submit" value="Kup"/>
+            </form>
+
         </div>
     </div>
 </section>

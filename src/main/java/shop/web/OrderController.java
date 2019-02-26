@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import shop.domens.Order;
 import shop.domens.Product;
 import shop.service.OrderService;
 import shop.service.ProductService;
@@ -20,6 +21,12 @@ public class OrderController {
     public String process(){
         orderService.processOrder(1,1);
 
+        return "redirect:/products";
+    }
+
+    @PostMapping
+    public String recv(@ModelAttribute("newOrder") Order order){
+        orderService.processOrder(order.getId(),order.getOrderSize());
         return "redirect:/products";
     }
 

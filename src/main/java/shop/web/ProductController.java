@@ -9,6 +9,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import shop.domens.Order;
 import shop.domens.Product;
 import shop.exception.NoProductsFoundUnderCategoryException;
 import shop.exception.ProductNotFoundException;
@@ -47,6 +48,7 @@ public class ProductController {
     @GetMapping("/product")
     public String getProductById(@RequestParam("id") long productId, Model model) {
         model.addAttribute("product", productService.getProductById(productId));
+        model.addAttribute("newOrder", new Order(productId));
         return "product";
     }
 
