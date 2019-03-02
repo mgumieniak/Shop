@@ -21,7 +21,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -30,7 +29,7 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping
-    public String list(Model model) {
+    public String getProductList(Model model) {
         model.addAttribute("productsList",productService.getAllProduct());
         return "products";
     }

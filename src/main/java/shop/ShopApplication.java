@@ -26,9 +26,9 @@ public class ShopApplication {
 
 
            repo.save(new Product("iPhone 5",new BigDecimal(3000),"iPhone 8 cali",
-                   "Apple","Smart Phone",30,0,false, NEW));
+                   "Apple","SmartPhone",30,0,false, NEW));
             repo.save(new Product("Samsung Galaxy 5",new BigDecimal(2000),"Samsung 8 cali",
-                    "Samsung","Smart Phone",30,0,false, NEW));
+                    "Samsung","SmartPhone",30,0,false, NEW));
 
 
 
