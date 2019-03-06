@@ -20,45 +20,59 @@
 
     <h2>New Product</h2>
 
-    <form method="POST" th:action="@{/products/add}" th:object="${newProduct}" enctype="multipart/form-data">
+    <form method="POST" th:action="@{/products/add}" th:object="${newProduct}" enctype="multipart/form-data" id="addProduct">
 
             <div th:if="${#fields.hasErrors()}">
-                 <span class="alert alert-danger">
-                    Please correct the problems below and resubmit.
-                 </span>
+                <span class="validationError">
+                    <span class="alert alert-danger">
+                        Please correct the problems below and resubmit.
+                    </span>
+                </span>
             </div></br>
 
 
             <label>Name:<br/>
-                <input type="text" name="inputData"  th:field="*{name}"/></label>
-                <span class="alert alert-danger"
-                      th:if="${#fields.hasErrors('name')}"
-                      th:errors="*{name}">Name Error</span><br/>
+                <input type="text" name="name"  th:field="*{name}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                          th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}">Name Error</span><br/>
+                </span>
             <label>UnitPrice:<br/>
-                <input type="text" name="inputData" th:field="*{unitPrice}"/></label>
-                <span class="alert alert-danger"
-                    th:if="${#fields.hasErrors('unitPrice')}"
-                    th:errors="*{unitPrice}">Name Error</span><br/>
+                <input type="text" name="unitPrice" th:field="*{unitPrice}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                        th:if="${#fields.hasErrors('unitPrice')}"
+                        th:errors="*{unitPrice}">Name Error</span><br/>
+                </span>
             <label>Description:<br/>
-                <input type="text" name="inputData" th:field="*{description}"/></label>
-                <span class="alert alert-danger"
-                    th:if="${#fields.hasErrors('description')}"
-                    th:errors="*{description}">Name Error</span><br/>
+                <input type="text" name="description" th:field="*{description}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                        th:if="${#fields.hasErrors('description')}"
+                        th:errors="*{description}">Name Error</span><br/>
+                </span>
             <label>Manufacturer:<br/>
-                <input type="text" name="inputData" th:field="*{manufacturer}"/></label>
-                <span class="alert alert-danger"
-                      th:if="${#fields.hasErrors('manufacturer')}"
-                      th:errors="*{manufacturer}">Name Error</span><br/>
+                <input type="text" name="manufacturer" th:field="*{manufacturer}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                          th:if="${#fields.hasErrors('manufacturer')}"
+                          th:errors="*{manufacturer}">Name Error</span><br/>
+                </span>
             <label>Category:<br/>
-                <input type="text" name="inputData" th:field="*{category}"/></label>
-                <span class="alert alert-danger"
-                    th:if="${#fields.hasErrors('category')}"
-                    th:errors="*{category}">Name Error</span><br/>
+                <input type="text" name="category" th:field="*{category}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                        th:if="${#fields.hasErrors('category')}"
+                        th:errors="*{category}">Name Error</span><br/>
+                </span>
             <label>UnitsInStock:<br/>
-                <input type="text" name="inputData" th:field="*{unitsInStock}"/></label>
-                <span class="alert alert-danger"
-                    th:if="${#fields.hasErrors('unitsInStock')}"
-                    th:errors="*{unitsInStock}">Name Error</span><br/>
+                <input type="text" name="unitsInStock" th:field="*{unitsInStock}"/></label>
+                <span class="validationError">
+                    <span class="alert alert-danger"
+                        th:if="${#fields.hasErrors('unitsInStock')}"
+                        th:errors="*{unitsInStock}">Name Error</span><br/>
+                </span>
 
             Stan:
             <select th:field="*{condition}">

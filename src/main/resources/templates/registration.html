@@ -19,7 +19,7 @@
     <section class="container">
 
 
-    <form method="POST" th:action="@{/register}" th:object="${newUser}">
+    <form method="POST" th:action="@{/register}" th:object="${newUser}" id="registerForm">
 
         <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
             <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>

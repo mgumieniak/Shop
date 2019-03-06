@@ -1,6 +1,7 @@
 package shop.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -45,7 +46,7 @@ public class ProductController {
     }
 
     @GetMapping("/product")
-    public String getProductById(@RequestParam("id") long productId, Model model) {
+    public String getProductById(@RequestParam(value="id") Long productId, Model model) {
         model.addAttribute("product", productService.getProductById(productId));
         model.addAttribute("newOrder", new Order(productId));
         return "product";

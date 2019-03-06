@@ -14,7 +14,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private  long productId;
+    private Long productId;
 
     @Size(min=3, max=60, message = "Invalid name. The correct name contain 3-60 characters")
     private  String name;
