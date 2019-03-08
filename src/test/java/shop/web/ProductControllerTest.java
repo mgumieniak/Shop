@@ -62,8 +62,6 @@ class ProductControllerTest {
     @MockBean
     private PasswordEncoder passwordEncoder;
 
-    @MockBean
-    private ProductService productService;
 
     private List<Product> productcs;
     private Product productTest;

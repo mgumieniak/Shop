@@ -35,7 +35,7 @@
                         Liczba sztuk w magazynie:
                         <span th:text="${product.unitsInStock}"></span>
                     </p>
-                    <a th:href="@{/products/product(id=${product.productId})}">
+                    <a th:href="@{/products/product(id=${product.productId})}" id="productDetails">
                         <span class="glyphicon-info-sign glyphicon"></span> Szczegóły
                     </a>
                     </br>

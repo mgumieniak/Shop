@@ -11,17 +11,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AddNewProduct {
+public class AddNewAndBuyProduct {
     private static HtmlUnitDriver browser;
 
     @LocalServerPort
@@ -72,6 +70,30 @@ public class AddNewProduct {
         submitNewProductWithBlankData();
         doLogout();
         assertEquals(homePageUrl(), browser.getCurrentUrl());
+    }
+
+    @Test
+    public void testBuyOneProductWith1Id() throws Exception{
+        browser.get(homePageUrl());
+        clickDetailsProduct();
+        assertLandedOnLoginPage();
+        doRegistration("test","test");
+        assertLandedOnLoginPage();
+        doLogin("test","test");
+        assertEquals(detailsPageUrl(browser.findElementById("productId").getAttribute("value")), browser.getCurrentUrl());
+        selectProductAndBuy("1");
+        assertEquals(homePageUrl(), browser.getCurrentUrl());
+    }
+
+    private void selectProductAndBuy(String amount) {
+        browser.findElementById("inputDataName").sendKeys(amount);
+        browser.findElementByCssSelector("form#buyProduct").submit();
+    }
+
+
+    private void clickDetailsProduct() {
+        assertEquals(homePageUrl(), browser.getCurrentUrl());
+        browser.findElementByCssSelector("a[id='productDetails']").click();
     }
 
     private void submitNewProductWithBlankData() {
@@ -156,13 +178,16 @@ public class AddNewProduct {
         return "http://localhost:" + port + "/register";
     }
 
-
     private String homePageUrl() {
         return "http://localhost:" + port + "/products";
     }
 
     private String addPageUrl() {
         return homePageUrl() + "/add";
+    }
+
+    private String detailsPageUrl(String idProduct) {
+        return homePageUrl() + "/product?id=" + idProduct;
     }
 
 

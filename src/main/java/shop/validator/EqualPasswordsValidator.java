@@ -20,3 +20,5 @@ public class EqualPasswordsValidator implements ConstraintValidator<EqualPasswor
         return registrationForm.getPassword().equals(registrationForm.getConfirmPassword());
     }
 }
+
+

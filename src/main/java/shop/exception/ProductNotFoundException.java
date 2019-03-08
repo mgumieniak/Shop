@@ -1,27 +1,12 @@
 package shop.exception;
 
+import lombok.Data;
 
-import java.util.function.Supplier;
 
+@Data
 public class ProductNotFoundException extends RuntimeException {
     private static final long serialVersionUID = -1L;
 
-    private long productId;
+    private final long productId;
 
-    public ProductNotFoundException() {
-        super();
-    }
-
-    public ProductNotFoundException(long productId) {
-        super();
-        this.productId=productId;
-    }
-
-    public long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
 }

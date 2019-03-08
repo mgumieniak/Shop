@@ -16,14 +16,14 @@
 </section>
 <section class="container">
     <div class="row">
-        <!--div class="col-md-5">
+        <div class="col-md-5">
             <img th:src="@{${'/images/' + product.productId + '.png'}}"/>
-        </div-->
+        </div>
         <div class="col-md-5">
             <h3><span th:text="${product.name}"></span></h3>
             <p><span th:text="${product.description}"></span></p>
             <p>
-                <strong>Kod produktu: </strong><span class="labellabel-warning"th:text="${product.productId}"></span>
+                <strong>Kod produktu: </strong><span class="labellabel-warning" id="productId" th:value="${product.productId}"></span>
             </p>
             <p>
                 <strong>Producent</strong>:  <span th:text="${product.manufacturer}"></span>
@@ -36,13 +36,14 @@
             </p>
             <h4><span th:text="${product.unitPrice}"></span> PLN</h4>
 
-            <form method="POST" th:action="@{/order}" th:object="${newOrder}">
+            <form method="POST" th:action="@{/order}" th:object="${newOrder}" id="buyProduct">
 
 
-                    <input type="hidden" name="inputData" th:field="*{id}"/></label><br/>
+                    <input type="hidden" name="inputDataId" th:field="*{id}"/></label><br/>
 
                 <label>UnitsInStock:<br/>
-                    <input type="text" name="inputData" th:field="*{orderSize}"/></label>
+                    <input type="text" id="inputDataName" th:field="*{orderSize}"/>
+                </label>
 
 
                 <input type="submit" value="Kup"/>

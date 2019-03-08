@@ -98,7 +98,6 @@ public class ProductController {
 
         binder.setAllowedFields("name","unitPrice","description","manufacturer","category","unitsInStock","condition",
                 "productImage");
-
     }
 
     @ExceptionHandler(ProductNotFoundException.class)

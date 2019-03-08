@@ -16,7 +16,7 @@ public class Product {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long productId;
 
-    @Size(min=3, max=60, message = "Invalid name. The correct name contain 3-60 characters")
+    @Size(min=3, max=20, message = "Invalid name. The correct name contain 3-60 characters")
     private  String name;
 
     @Min(value = 0, message = "The price can not be negative")
@@ -53,7 +53,6 @@ public class Product {
 
     public Product(String name, BigDecimal unitPrice, String description, String manufacturer,
                    String category, int unitsInStock, int unitsInOrder, boolean discontinued, Condition condition) {
-
         this.name = name;
         this.unitPrice = unitPrice;
         this.description = description;
